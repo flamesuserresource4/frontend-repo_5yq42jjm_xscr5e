@@ -55,11 +55,11 @@ function ThemeToggle({ theme, setTheme }) {
       type="button"
       aria-label="Toggle theme"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full border border-gray-300 dark:border-gray-700 transition-colors ${isDark ? 'bg-gray-800' : 'bg-white'}`}
+      className={`relative inline-flex h-8 w-14 shrink-0 cursor-pointer items-center rounded-full border transition-colors ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-300'}`}
     >
-      <span className={`inline-block h-5 w-5 transform rounded-full bg-gradient-to-tr from-violet-600 to-blue-500 shadow transition ${isDark ? 'translate-x-6' : 'translate-x-1'}`}></span>
-      <span className="absolute left-1 text-[10px] text-amber-500">{isDark ? '' : '☀️'}</span>
-      <span className="absolute right-1 text-[10px]">{isDark ? '🌙' : ''}</span>
+      <span className={`absolute inset-y-0 left-0 flex items-center pl-2 text-[10px] ${isDark ? 'text-gray-500' : 'text-amber-500'}`}>{isDark ? '' : '☀️'}</span>
+      <span className={`absolute inset-y-0 right-0 flex items-center pr-2 text-[10px] ${isDark ? 'text-blue-300' : 'text-gray-400'}`}>{isDark ? '🌙' : ''}</span>
+      <span className={`inline-block h-6 w-6 transform rounded-full bg-gradient-to-tr from-violet-600 to-blue-500 shadow transition ${isDark ? 'translate-x-7' : 'translate-x-1'}`}></span>
     </button>
   )
 }
@@ -160,6 +160,12 @@ export default function App() {
     }
   }
 
+  const experience = [
+    { role: 'Senior Software Engineer', company: 'Tech Corp', start: '2023', end: 'Present', points: ['Led development of a multi-tenant SaaS platform', 'Improved page performance by 40% with strategic caching', 'Mentored a team of 4 engineers'] },
+    { role: 'Full‑Stack Engineer', company: 'Startup Labs', start: '2021', end: '2023', points: ['Built and maintained GraphQL APIs', 'Implemented CI pipelines and automated tests', 'Collaborated with design to ship polished UI'] },
+    { role: 'Software Engineer', company: 'Freelance', start: '2019', end: '2021', points: ['Delivered end‑to‑end web apps for clients', 'Optimized apps for accessibility and SEO'] },
+  ]
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
       {/* Navbar */}
@@ -195,30 +201,31 @@ export default function App() {
         )}
       </header>
 
-      {/* Hero with Spline */}
+      {/* Hero with Spline - improved contrast */}
       <section className="relative pt-24" id="hero">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-transparent dark:from-gray-950 dark:via-gray-950/70 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="py-12">
-              <p className="text-xs uppercase tracking-widest text-violet-600 dark:text-violet-400 font-semibold">Hi, I’m</p>
-              <h1 className="mt-2 text-4xl sm:text-5xl font-extrabold leading-tight">
-                Your Name
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Software Engineer</span>
-              </h1>
-              <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-xl">
-                I build modern, scalable web applications with delightful user experiences. I enjoy solving complex problems and shipping high-quality products.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Badge>React</Badge>
-                <Badge>TypeScript</Badge>
-                <Badge>FastAPI</Badge>
-                <Badge>MongoDB</Badge>
-                <Badge>AWS</Badge>
-              </div>
-              <div className="mt-8 flex items-center gap-3">
-                <a href="#projects" onClick={(e) => { e.preventDefault(); handleNav('projects') }} className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-100">View Projects</a>
-                <a href="#contact" onClick={(e) => { e.preventDefault(); handleNav('contact') }} className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm font-semibold hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+            <div className="py-8">
+              <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-900/80 backdrop-blur p-6 shadow-sm">
+                <p className="text-xs uppercase tracking-widest text-violet-600 dark:text-violet-400 font-semibold">Hi, I’m</p>
+                <h1 className="mt-2 text-4xl sm:text-5xl font-extrabold leading-tight">
+                  Your Name
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Software Engineer</span>
+                </h1>
+                <p className="mt-4 text-gray-700 dark:text-gray-300 max-w-xl">
+                  I build modern, scalable web applications with delightful user experiences. I enjoy solving complex problems and shipping high-quality products.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Badge>React</Badge>
+                  <Badge>TypeScript</Badge>
+                  <Badge>FastAPI</Badge>
+                  <Badge>MongoDB</Badge>
+                  <Badge>AWS</Badge>
+                </div>
+                <div className="mt-8 flex items-center gap-3">
+                  <a href="#projects" onClick={(e) => { e.preventDefault(); handleNav('projects') }} className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-100">View Projects</a>
+                  <a href="#contact" onClick={(e) => { e.preventDefault(); handleNav('contact') }} className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm font-semibold hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+                </div>
               </div>
             </div>
             <div className="h-[460px] sm:h-[520px] lg:h-[560px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/40">
@@ -258,26 +265,23 @@ export default function App() {
         </div>
       </section>
 
-      {/* Experience - In Progress UI */}
+      {/* Experience - Vertical timeline with progress */}
       <section id="experience" className="py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <SectionTitle eyebrow="Experience" title="Where I’ve worked" />
-          </div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 px-3 py-1 text-xs font-medium ring-1 ring-amber-200/80 dark:ring-amber-900">
-            <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
-            In progress — detailed timeline coming soon
-          </div>
-          <div className="space-y-4">
-            {[1,2].map((i) => (
-              <div key={i} className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5">
-                <div className="animate-pulse">
-                  <div className="h-4 w-2/3 rounded bg-gray-200 dark:bg-gray-800" />
-                  <div className="mt-3 grid gap-2">
-                    <div className="h-3 w-full rounded bg-gray-200 dark:bg-gray-800" />
-                    <div className="h-3 w-5/6 rounded bg-gray-200 dark:bg-gray-800" />
-                    <div className="h-3 w-3/4 rounded bg-gray-200 dark:bg-gray-800" />
+          <SectionTitle eyebrow="Experience" title="Where I’ve worked" subtitle="A timeline of roles with dates." />
+          <div className="relative pl-8">
+            <span className="pointer-events-none absolute left-3 top-2 bottom-2 w-0.5 bg-gradient-to-b from-violet-500 via-blue-500 to-cyan-500 dark:from-violet-600 dark:via-blue-600 dark:to-cyan-600" />
+            {experience.map((job, idx) => (
+              <div key={idx} className="relative mb-10 last:mb-0">
+                <span className="absolute -left-0.5 top-2 h-3 w-3 rounded-full bg-violet-600 ring-4 ring-white dark:ring-gray-950" />
+                <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 shadow-sm">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="font-semibold">{job.role} · {job.company}</h3>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{job.start} — {job.end}</span>
                   </div>
+                  <ul className="mt-3 list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1 text-sm">
+                    {job.points.map((p, i) => <li key={i}>{p}</li>)}
+                  </ul>
                 </div>
               </div>
             ))}
